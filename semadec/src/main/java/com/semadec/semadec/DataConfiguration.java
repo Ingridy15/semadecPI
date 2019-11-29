@@ -1,4 +1,4 @@
-package com.semadec;
+package com.semadec.semadec;
 
 import javax.sql.DataSource;
 

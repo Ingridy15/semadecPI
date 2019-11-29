@@ -1,4 +1,4 @@
-package com.semadec;
+package com.semadec.semadec;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
