@@ -11,45 +11,32 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
       <link rel="stylesheet" href="style/styleCss.css">
 </head>
 <body>
   <header>
      <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Lista de eventos</a>
+      <a href="#" class="brand-logo">Evento</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href= "/cadastrarE" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar eventos</a></li>      
- 		 <li><a href= "/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Inicio</a>     
+        <li><a href= "/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista eventos</a></li>      
       </ul>
     </div>
   </nav>
   </header>
-	
-	
-	<table class="container">
-	<thead>
-	<tr>
-	   <th>Nome</th>
-	   <th>Local</th>
-	   <th>Data</th>
-	   <th>Tipo</th>
-	   <th>Horario</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr th:each="evento : ${eventos}">
+	<div th:each="evento : ${evento}"class="container detalhesEvento">
+	<h5>Detalhes do Evento</h5>
+	 
+	<div class="row">
+	<p>Nome: <span th:text="${evento.nome}"></span></p>
+	<p>Local: <span th:text="${evento.local}"></span></p>
+	<p>Data: <span th:text="${evento.data}"></span></p>
+	<p>Horario: <span th:text="${evento.horario}"></span></p>
+	</div>
+	</div>
 
-	<td><a th:href="${(#mvc.url('SC#detalhesEvento').arg(0, evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>
-	<td><span th:text="${evento.local}"></span></td>
-	<td><span th:text="${evento.data}"></span></td>
-	<td><span th:text="${evento.tipo}"></span></td>
-	<td><span th:text="${evento.horario}"></span></td>
-	</tr> 
-	</tbody>
-	
-	</table>
-	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 	
 </body>
