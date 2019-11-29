@@ -10,7 +10,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Usuario {
 
-
 	private static final long serialVersionUID = 1L;
 	
 	@Id
