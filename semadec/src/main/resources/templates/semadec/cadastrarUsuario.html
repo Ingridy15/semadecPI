@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EventoApp</title>
+<title>Semadec</title>
 <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
       <!--Import materialize.css-->
@@ -18,15 +18,34 @@
     <header>
      <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Cadastro de Eventos</a>
+      <a href="#" class="brand-logo">Cadastro de Usuario</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href= "/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a>
+        <li><a href= "/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Inicio</a>
         </li>      
       </ul>
     </div>
   </nav>
   </header>
+	<div class="container cadastarUsuario">
 	
+	<form class="container"  method="post">
+		Nome: <input type="text" value="" name="nome">
+		
+		Matricula: <input type="text" value="" name="matricula">
+		<div class="row">
+		<div class="input-field col s6">
+		Data de Nascimento: <input type="date" value="" name="dataNascimento">
+		</div>
+		<div class="input-field col s3">
+		CPF: <input type="text" value="" name="cpf">
+		</div>
+		<div class="input-field col s3">
+		Tipo: <input type="text" value="" name="tipo">
+		</div>  
+		</div>
+		<button class="waves-effect waves-light btn" type="submit">Salvar</button>
+	</form>
+	</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 	
