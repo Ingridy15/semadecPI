@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.semadec.semadec.models.Evento;
@@ -50,4 +51,16 @@ public class SemadecController {
 		er.save(evento);
 		return "redirect:/cadastrarE";
 	}
+	
+	@RequestMapping("/eventos")
+	public ModelAndView listaEventos() {
+		
+		ModelAndView mv = new ModelAndView("semadec/listaE");
+		Iterable<Evento> eventos = er.findAll();
+		mv.addObject("eventos", eventos);
+		return mv;
+		
+	}
+	
+	
 }
