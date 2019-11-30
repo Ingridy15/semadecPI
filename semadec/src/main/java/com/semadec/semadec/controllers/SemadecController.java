@@ -65,11 +65,17 @@ public class SemadecController {
 	public ModelAndView detalhesEvento (@PathVariable("codigo")long codigo) {
 	  Evento evento = er.findByCodigo(codigo);
 	  ModelAndView mv = new ModelAndView("semadec/detalhesEvento");
-	  mv.addObject("evento", evento );
-	  
+	  mv.addObject("evento", evento );  
 	  
 	  return mv;
 	  
+	}
+	@RequestMapping("/deletarEvento")
+	public String deletarEvento(long codigo) {
+		Evento evento = er.findByCodigo(codigo);
+		er.delete(evento);
+		return "redirect:/eventos";
+		
 	}
 	
 }

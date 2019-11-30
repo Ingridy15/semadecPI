@@ -1,9 +1,12 @@
 package com.semadec.semadec.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -26,6 +29,7 @@ public class Usuario {
 	private String cpf;
 	@NotEmpty
 	private String tipo;
+	
 	
 	public long getId() {
 		return id;

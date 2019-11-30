@@ -1,9 +1,13 @@
 package com.semadec.semadec.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,6 +29,8 @@ public class Evento {
 	private String local;
 	@NotEmpty
 	private String horario;
+	
+	
 	
 	public long getCodigo() {
 		return codigo;
