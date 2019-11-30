@@ -3,6 +3,8 @@ package com.semadec.semadec.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +39,14 @@ public class SemadecController {
 	@RequestMapping(value= "/cadastrarU", method = RequestMethod.POST)
 	public String cadastrarU(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes) {
 	
+		Usuario usuVerifica = ur.findByLogin(usuario.getLogin());
+		if(usuVerifica != null) {
+			throw new UsernameNotFoundException("Usuario já existe");
+			
+		}
+		
+		String senha = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		usuario.setSenha(senha);
 		ur.save(usuario);
 		return "redirect:/cadastrarU";
 	}

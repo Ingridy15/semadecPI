@@ -8,6 +8,7 @@ public class SemadecApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SemadecApplication.class, args);
+		
 	}
 
 }
