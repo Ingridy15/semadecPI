@@ -1,11 +1,14 @@
 package com.semadec.semadec.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,13 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 public class Usuario implements UserDetails{
 
-	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
-	@NotEmpty
 	private String login;
 	@NotEmpty
 	private String senha;
@@ -35,7 +33,21 @@ public class Usuario implements UserDetails{
 	@NotEmpty
 	private String tipo;
 	
+	@ManyToMany
+	@JoinTable(name = "usuarios_roles",joinColumns = @JoinColumn(
+			name = "usuario_id", referencedColumnName = "login"),
+	inverseJoinColumns = @JoinColumn(
+			name = "role_id", referencedColumnName = "nomeRole"))
+	private List<Role> roles;
 	
+	
+	
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	public String getLogin() {
 		return login;
 	}
@@ -48,12 +60,7 @@ public class Usuario implements UserDetails{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -84,13 +91,10 @@ public class Usuario implements UserDetails{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return getRoles();
 	}
 	@Override
 	public String getPassword() {
@@ -100,7 +104,7 @@ public class Usuario implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.matricula;
+		return this.login;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
