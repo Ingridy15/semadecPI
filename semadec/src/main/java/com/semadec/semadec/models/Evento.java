@@ -30,7 +30,8 @@ public class Evento {
 	@NotEmpty
 	private String horario;
 	
-	
+	@OneToMany
+	private List<Relacao> relacao;
 	
 	public long getCodigo() {
 		return codigo;

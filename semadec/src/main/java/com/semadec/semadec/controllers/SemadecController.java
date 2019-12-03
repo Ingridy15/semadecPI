@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.semadec.semadec.models.Evento;
+import com.semadec.semadec.models.Relacao;
 import com.semadec.semadec.models.Usuario;
 import com.semadec.semadec.repository.EventoRepository;
+import com.semadec.semadec.repository.RelacaoRepository;
 import com.semadec.semadec.repository.UsuarioRepository;
 
 @Controller
@@ -25,6 +27,10 @@ public class SemadecController {
 	private UsuarioRepository ur;
 	@Autowired
 	private EventoRepository er;
+	@Autowired
+	private RelacaoRepository rr;
+	
+	UsuarioController uc = new UsuarioController();
 	
 	@RequestMapping("/")
 	public String index(){
@@ -87,5 +93,18 @@ public class SemadecController {
 		return "redirect:/eventos";
 		
 	}
+	//RELACAO
 	
+	
+	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
+	public String cadastrarRelacao(Relacao relacao,@PathVariable("codigo")long codigo,BindingResult result, RedirectAttributes attributes) {
+		
+		Usuario usuario = ur.findByLogin("berg18");
+		relacao.setUsuario(usuario);
+		Evento evento = er.findByCodigo(codigo);	
+		relacao.setEvento(evento);	
+		
+		rr.save(relacao);
+		return "redirect:/eventos";
+	}
 }
