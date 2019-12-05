@@ -30,7 +30,6 @@ public class SemadecController {
 	@Autowired
 	private RelacaoRepository rr;
 	
-	UsuarioController uc = new UsuarioController();
 	
 	@RequestMapping("/")
 	public String index(){
@@ -58,8 +57,12 @@ public class SemadecController {
 	}
 	
 	@RequestMapping(value = "/cadastrarE", method = RequestMethod.GET)
-	public String cadastrarE() {
-		return "semadec/cadastrarEvento";
+	public ModelAndView cadastrarE() {
+		ModelAndView mv = new ModelAndView("semadec/cadastrarEvento");
+		Iterable<Evento> eventos = er.findAll();
+		mv.addObject("eventos", eventos);
+
+		return mv;
 	}
 	
 	@RequestMapping(value= "/cadastrarE", method = RequestMethod.POST)
@@ -77,6 +80,7 @@ public class SemadecController {
 		mv.addObject("eventos", eventos);
 		return mv;
 	}
+	
 	@RequestMapping(value="/{codigo}",method=RequestMethod.GET)
 	public ModelAndView detalhesEvento (@PathVariable("codigo")long codigo) {
 	  Evento evento = er.findByCodigo(codigo);
@@ -99,9 +103,14 @@ public class SemadecController {
 	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
 	public String cadastrarRelacao(Relacao relacao,@PathVariable("codigo")long codigo,BindingResult result, RedirectAttributes attributes) {
 		
-		Usuario usuario = ur.findByLogin("berg18");
+		UsuarioController uc = new UsuarioController();
+
+		String usu = uc.getUsuario().getLogin();
+		Usuario usuario = ur.findByLogin(usu);
+		
 		relacao.setUsuario(usuario);
-		Evento evento = er.findByCodigo(codigo);	
+			
+		Evento evento = er.findByCodigo(codigo);
 		relacao.setEvento(evento);	
 		
 		rr.save(relacao);

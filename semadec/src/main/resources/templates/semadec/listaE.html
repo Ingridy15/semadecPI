@@ -19,9 +19,9 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Lista de eventos</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href= "/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Inicio</a>
         <li><a href= "/cadastrarE" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar eventos</a></li>      
- 		 <li><a href= "/" class="waves-effect waves-light btn"><i class="material-icons left">home</i>Inicio</a>
- 		 <li><a href= "/logout" class="waves-effect waves-light btn"><i class="material-icons left">close</i>Sair</a>     
+ 		<li><a href= "/logout" class="waves-effect waves-light btn"><i class="material-icons left">close</i>Sair</a>     
       </ul>
     </div>
   </nav>
@@ -36,7 +36,6 @@
 	   <th>Data</th>
 	   <th>Tipo</th>
 	   <th>Horario</th>
-	   <th>Deletar</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -47,7 +46,6 @@
 	<td><span th:text="${evento.data}"></span></td>
 	<td><span th:text="${evento.tipo}"></span></td>
 	<td><span th:text="${evento.horario}"></span></td>
-	<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('SC#deletarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons left">delete</i></a></td>
 	
 	</tr> 
 	</tbody>
